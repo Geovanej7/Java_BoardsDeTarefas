@@ -15,7 +15,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Board extends AuditableEntity{
-
-    private String name;
+public class Card extends AuditableEntity {
+    private String title;
+    private String description;
 }

@@ -15,7 +15,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Board extends AuditableEntity{
+public class Block extends AuditableEntity{
 
-    private String name;
+    private String blockCause;
+    private String unBlockCause;
+
 }
