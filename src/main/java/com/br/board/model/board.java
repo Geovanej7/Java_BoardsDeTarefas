@@ -2,6 +2,7 @@ package com.br.board.model;
 
 import com.br.board.util.entity.AuditableEntity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,5 +18,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Board extends AuditableEntity{
 
+    @Column(nullable = false)
     private String name;
 }
