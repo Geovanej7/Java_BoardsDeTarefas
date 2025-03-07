@@ -1,4 +1,4 @@
-package com.br.board.model;
+package com.br.board.model.board;
 
 import com.br.board.util.entity.AuditableEntity;
 

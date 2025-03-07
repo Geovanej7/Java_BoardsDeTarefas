@@ -1,6 +1,6 @@
-package com.br.board.DTOs;
+package com.br.board.controller.DTOs;
 
-import com.br.board.model.Board;
+import com.br.board.model.board.Board;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

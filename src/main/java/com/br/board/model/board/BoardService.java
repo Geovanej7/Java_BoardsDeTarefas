@@ -1,13 +1,10 @@
-package com.br.board.service;
+package com.br.board.model.board;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.br.board.model.Board;
-import com.br.board.repository.BoardRepository;
 
 import jakarta.transaction.Transactional;
 

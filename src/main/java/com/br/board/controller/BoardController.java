@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.br.board.DTOs.BoardRequest;
-import com.br.board.model.Board;
-import com.br.board.service.BoardService;
+import com.br.board.controller.DTOs.BoardRequest;
+import com.br.board.model.board.Board;
+import com.br.board.model.board.BoardService;
 
 @RestController
 @RequestMapping("/controller/board")
