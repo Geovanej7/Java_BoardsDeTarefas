@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.br.board.controller.DTOs.CardRequest;
 import com.br.board.model.card.Card;
 import com.br.board.model.card.CardService;
