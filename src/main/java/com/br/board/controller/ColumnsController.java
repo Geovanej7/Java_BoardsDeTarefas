@@ -15,43 +15,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.br.board.controller.DTOs.CardRequest;
-import com.br.board.model.card.Card;
-import com.br.board.model.card.CardService;
+import com.br.board.controller.DTOs.ColumnsRequest;
+import com.br.board.model.columns.Columns;
+import com.br.board.model.columns.ColumnsService;
 
 @RestController
-@RequestMapping("/controller/card")
+@RequestMapping("/controller/columns")
 @CrossOrigin
-public class CardController {
-    
+public class ColumnsController {
     @Autowired
-    private CardService cardService;
+    private ColumnsService columnsService;
 
-    @PostMapping 
-    public ResponseEntity<Card> create (@RequestBody CardRequest request){
-        Card card = cardService.create(request.build());
-        return new ResponseEntity<Card>(card,HttpStatus.CREATED);
-    }    
+    @PostMapping
+    public ResponseEntity<Columns> create(@RequestBody ColumnsRequest request){ 
+        Columns columns = columnsService.create(request.build());
+        return new ResponseEntity<Columns>(columns,HttpStatus.CREATED);
+    }
 
     @GetMapping
-    public List<Card> findAll(){
-        return cardService.findAll();
+    public List<Columns> findAll(){
+        return columnsService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Card findById(@PathVariable Long id){
-        return cardService.findById(id);
+    public Columns findById(@PathVariable Long id){
+        return columnsService.findById(id);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable("id")Long id, @RequestBody CardRequest request){
-        cardService.update(id, request.build());
+     @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@PathVariable("id")Long id, @RequestBody ColumnsRequest request){
+        columnsService.update(id, request.build());
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
-        cardService.delete(id);
+        columnsService.delete(id);
         return ResponseEntity.ok().build();
     }
 }
+
+

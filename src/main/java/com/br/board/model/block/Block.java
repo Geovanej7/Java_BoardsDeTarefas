@@ -1,4 +1,4 @@
-package com.br.board.model;
+package com.br.board.model.block;
 
 import com.br.board.util.entity.AuditableEntity;
 
@@ -16,8 +16,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Columns extends AuditableEntity {
-    
+public class Block extends AuditableEntity{
+
     @Column(nullable = false)
-    private String name; 
+    private String blockCause;
+    @Column(nullable = false)
+    private String unBlockCause;
+
 }

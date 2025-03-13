@@ -15,43 +15,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.br.board.controller.DTOs.CardRequest;
-import com.br.board.model.card.Card;
-import com.br.board.model.card.CardService;
+import com.br.board.controller.DTOs.BlockRequest;
+import com.br.board.model.block.Block;
+import com.br.board.model.block.BlockService;
 
 @RestController
-@RequestMapping("/controller/card")
+@RequestMapping("/controller/block")
 @CrossOrigin
-public class CardController {
-    
+public class BlockController {
     @Autowired
-    private CardService cardService;
+    private BlockService blockService;
 
     @PostMapping 
-    public ResponseEntity<Card> create (@RequestBody CardRequest request){
-        Card card = cardService.create(request.build());
-        return new ResponseEntity<Card>(card,HttpStatus.CREATED);
+    public ResponseEntity<Block> create (@RequestBody BlockRequest request){
+        Block block = blockService.create(request.build());
+        return new ResponseEntity<Block>(block,HttpStatus.CREATED);
     }    
 
     @GetMapping
-    public List<Card> findAll(){
-        return cardService.findAll();
+    public List<Block> findAll(){
+        return blockService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Card findById(@PathVariable Long id){
-        return cardService.findById(id);
+    public Block findById(@PathVariable Long id){
+        return blockService.findById(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable("id")Long id, @RequestBody CardRequest request){
-        cardService.update(id, request.build());
+    public ResponseEntity<Void> update(@PathVariable("id")Long id, @RequestBody BlockRequest request){
+        blockService.update(id, request.build());
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
-        cardService.delete(id);
+        blockService.delete(id);
         return ResponseEntity.ok().build();
     }
+
 }
