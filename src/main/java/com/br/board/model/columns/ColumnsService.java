@@ -1,10 +1,14 @@
 package com.br.board.model.columns;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.br.board.model.board.Board;
+import com.br.board.model.board.BoardRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -13,11 +17,28 @@ public class ColumnsService {
 
     @Autowired
     private ColumnsRepository columnsRepository;
+    @Autowired
+    private BoardRepository boardRepository;
 
     @Transactional
-    public Columns create (Columns columns){
+    public Columns create (Long boardId,Columns columns){
+
+        Board board = boardRepository.findById(boardId).get();
+        List<Columns> columnsList = board.getColumns();
+
+        columns.setBoard(board);
         columns.setCreationDate(LocalDate.now());
-        return columnsRepository.save(columns);
+        columnsRepository.save(columns);
+
+        if(columnsList == null){ 
+            columnsList = new ArrayList<Columns>();
+        }
+
+        columnsList.add(columns);
+        board.setColumns(columnsList);
+        boardRepository.save(board);
+        return columns;
+
     }
 
     @Transactional
@@ -46,6 +67,11 @@ public class ColumnsService {
         Columns columns = columnsRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("Column not found with ID: " + id));
         columnsRepository.delete(columns);
+
+        Board board = boardRepository.findById(columns.getBoard().getId())
+        .orElseThrow(() -> new RuntimeException("board not found with ID: "));
+        board.getColumns().remove(columns);
+        boardRepository.save(board);
     }
 
 }

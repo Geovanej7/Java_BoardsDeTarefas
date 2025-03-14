@@ -25,9 +25,9 @@ public class ColumnsController {
     @Autowired
     private ColumnsService columnsService;
 
-    @PostMapping
-    public ResponseEntity<Columns> create(@RequestBody ColumnsRequest request){ 
-        Columns columns = columnsService.create(request.build());
+    @PostMapping("/{boardId}")
+    public ResponseEntity<Columns> create(@PathVariable("boardId")Long boardId,@RequestBody ColumnsRequest request){ 
+        Columns columns = columnsService.create(boardId,request.build());
         return new ResponseEntity<Columns>(columns,HttpStatus.CREATED);
     }
 
