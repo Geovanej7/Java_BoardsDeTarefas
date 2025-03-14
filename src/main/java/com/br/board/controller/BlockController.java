@@ -26,9 +26,9 @@ public class BlockController {
     @Autowired
     private BlockService blockService;
 
-    @PostMapping 
-    public ResponseEntity<Block> create (@RequestBody BlockRequest request){
-        Block block = blockService.create(request.build());
+    @PostMapping("{cardId}")
+    public ResponseEntity<Block> create (@PathVariable("cardId")Long cardId,@RequestBody BlockRequest request){
+        Block block = blockService.create(cardId,request.build());
         return new ResponseEntity<Block>(block,HttpStatus.CREATED);
     }    
 
