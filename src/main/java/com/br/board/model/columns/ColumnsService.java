@@ -69,7 +69,7 @@ public class ColumnsService {
         columnsRepository.delete(columns);
 
         Board board = boardRepository.findById(columns.getBoard().getId())
-        .orElseThrow(() -> new RuntimeException("board not found with ID: "));
+        .orElseThrow(() -> new RuntimeException("board not found : "));
         board.getColumns().remove(columns);
         boardRepository.save(board);
     }

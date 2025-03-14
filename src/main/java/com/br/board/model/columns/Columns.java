@@ -1,12 +1,17 @@
 package com.br.board.model.columns;
 
+import java.util.List;
+
 import com.br.board.model.board.Board;
+import com.br.board.model.card.Card;
 import com.br.board.util.entity.AuditableEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,4 +32,7 @@ public class Columns extends AuditableEntity {
 
     @Column(nullable = false)
     private String name; 
+
+    @OneToMany(mappedBy = "columns", orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Card> cards;
 }
