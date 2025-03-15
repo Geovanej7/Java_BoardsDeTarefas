@@ -20,10 +20,9 @@ Uma aplicação inspirada nas aulas de integração de sistemas com bancos de da
 ✅ **Bloquear** um Card  
 ✅ **Mover Cards** entre Colunas  
 
-🔜 **Funcionalidades Futuras**  
+## 🔜 **Funcionalidades Futuras**  
 🔹 Melhorar controle de permissões  
-🔹 Refinar regras de negócios 
-🔹 Criar uma interface gráfica  
+🔹 Refinar regras de negócios  
 🔹 Criar tratamento de erros
 
 ---
