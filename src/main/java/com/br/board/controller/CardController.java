@@ -48,6 +48,12 @@ public class CardController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/moveCard/{cardId}/{currentColumnId}/{destinationColumnId}")
+    public ResponseEntity<Void> moveCard(@PathVariable Long cardId, @PathVariable Long currentColumnId, @PathVariable Long destinationColumnId){ 
+        cardService.moveCard(cardId, currentColumnId, destinationColumnId);
+        return ResponseEntity.ok().build();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         cardService.delete(id);

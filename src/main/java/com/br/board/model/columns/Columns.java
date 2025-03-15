@@ -7,6 +7,7 @@ import com.br.board.model.card.Card;
 import com.br.board.util.entity.AuditableEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -33,6 +34,6 @@ public class Columns extends AuditableEntity {
     @Column(nullable = false)
     private String name; 
 
-    @OneToMany(mappedBy = "columns", orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "columns", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Card> cards;
 }

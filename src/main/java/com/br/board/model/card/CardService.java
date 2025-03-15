@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.br.board.model.columns.Columns;
 import com.br.board.model.columns.ColumnsRepository;
 
@@ -13,7 +12,7 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class CardService {
-
+  
     @Autowired
     private CardRepository cardRepository;
     @Autowired
@@ -59,6 +58,31 @@ public class CardService {
         card.setDescription(newCard.getDescription());
         card.setLastModifiedDate(LocalDate.now());
         cardRepository.save(card);
+    }
+
+    @Transactional
+    public void moveCard(Long cardId, Long currentColumnId, Long destinationColumnId){ 
+        
+        Columns currentColumn = columnsRepository.findById(currentColumnId).get();
+        Columns destinationColumn = columnsRepository.findById(destinationColumnId).get();
+
+        List<Card> currentList = currentColumn.getCards();
+        List<Card> destinationList = destinationColumn.getCards();
+
+        Card card = cardRepository.findById(cardId)
+        .orElseThrow(() -> new RuntimeException("Card not found with ID: " + cardId));
+
+        destinationList.add(card);
+        destinationColumn.setCards(destinationList);
+
+        currentList.remove(card);
+        currentColumn.setCards(currentList);
+
+        card.setColumns(destinationColumn);
+        cardRepository.save(card);
+        columnsRepository.save(currentColumn);
+        columnsRepository.save(destinationColumn);
+
     }
 
     @Transactional
