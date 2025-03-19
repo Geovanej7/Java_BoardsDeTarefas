@@ -9,10 +9,8 @@ Uma aplicação inspirada nas aulas de integração de sistemas com bancos de da
 - **Hibernate & JPA**  
 - **Banco de Dados H2**  
 - **Lombok**  
-- **Jakarta Persistence API**  
-
----
-
+- **Jakarta Persistence API**
+  
 ## 📌 Funcionalidades  
 ✅ Criar um **Board**  
 ✅ Criar uma **Coluna** dentro de um Board  
@@ -21,9 +19,53 @@ Uma aplicação inspirada nas aulas de integração de sistemas com bancos de da
 ✅ **Mover Cards** entre Colunas  
 
 ## 🔜 **Funcionalidades Futuras**  
-🔹 Melhorar controle de permissões  
+🔹 Implementar controle de permissões 
 🔹 Refinar regras de negócios  
 🔹 Criar tratamento de erros
 
+## Diagrama de Classes
+```mermaid
+classDiagram
+    class AuditableEntity {
+        <<abstract>>
+        - Long id
+        - LocalDate creationDate
+        - LocalDate lastModifiedDate
+    }
+
+    class Board {
+        - String name
+        - List<Columns> columns
+    }
+
+    class Columns {
+        - String name
+        - List<Card> cards
+    }
+
+    class Card {
+        - String title
+        - String description
+        - List<Block> blocks
+    }
+
+    class Block {
+        - String blockCause
+        - String unBlockCause
+    }
+
+    Board "1" --> "*" Columns 
+    Columns "1" --> "*" Card 
+    Card "1" --> "*" Block 
+    Columns "*" --> "1" Board
+    Card "*" --> "1" Columns
+    Block "*" --> "1" Card
+    
+    Board --|> AuditableEntity
+    Columns --|> AuditableEntity
+    Card --|> AuditableEntity
+    Block --|> AuditableEntity
+
+```
 ---
 feito com ❤️
