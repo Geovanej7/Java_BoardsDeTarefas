@@ -23,7 +23,7 @@ Uma aplicação inspirada nas aulas de integração de sistemas com bancos de da
 🔹 Refinar regras de negócios  
 🔹 Criar tratamento de erros
 
-## Diagrama de Classes
+## 📄 Diagrama de Classes
 ```mermaid
 classDiagram
     class AuditableEntity {
