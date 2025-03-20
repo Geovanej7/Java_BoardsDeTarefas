@@ -63,22 +63,29 @@ public class CardService {
     @Transactional
     public void moveCard(Long cardId, Long currentColumnId, Long destinationColumnId){ 
         
-        Columns currentColumn = columnsRepository.findById(currentColumnId).get();
-        Columns destinationColumn = columnsRepository.findById(destinationColumnId).get();
+        Columns currentColumn = columnsRepository.findById(currentColumnId).get(); //busca no banco a coluna atual
+        Columns destinationColumn = columnsRepository.findById(destinationColumnId).get();//busca no banco a coluna de destino
 
-        List<Card> currentList = currentColumn.getCards();
-        List<Card> destinationList = destinationColumn.getCards();
+        List<Card> currentList = currentColumn.getCards();//cria uma instância da lista de cards da coluna atual 
+        List<Card> destinationList = destinationColumn.getCards();//cria uma instância da lista de cards da coluna de destino
 
         Card card = cardRepository.findById(cardId)
-        .orElseThrow(() -> new RuntimeException("Card not found with ID: " + cardId));
+        .orElseThrow(() -> new RuntimeException("Card not found with ID: " + cardId));//busca o card pelo id ou retorna um errro
 
-        destinationList.add(card);
-        destinationColumn.setCards(destinationList);
+        destinationList.add(card);//adiciona o card na instância da lista de destino
+        destinationColumn.setCards(destinationList);// atualiza a lista na coluna de destino 
 
-        currentList.remove(card);
-        currentColumn.setCards(currentList);
+        currentList.remove(card);//remove o card da lista de onde ele veio 
+        currentColumn.setCards(currentList);// salva a lista na coluna de onde o card veio
 
-        card.setColumns(destinationColumn);
+        card.setColumns(destinationColumn); //atualiza no card a lista que é responsavel por ele 
+
+        //atualizada a data de modificação dos objetos
+        card.setLastModifiedDate(LocalDate.now()); 
+        currentColumn.setLastModifiedDate(LocalDate.now()); 
+        destinationColumn.setLastModifiedDate(LocalDate.now());
+        
+        //salvando todos objetos
         cardRepository.save(card);
         columnsRepository.save(currentColumn);
         columnsRepository.save(destinationColumn);
