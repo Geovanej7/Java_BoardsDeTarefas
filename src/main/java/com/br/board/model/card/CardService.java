@@ -21,20 +21,23 @@ public class CardService {
     @Transactional
     public Card create (Long columnId,Card card){
 
-        Columns columns = columnsRepository.findById(columnId).get();
-        List<Card> cardList = columns.getCards();
+        Columns columns = columnsRepository.findById(columnId).get(); //busca a coluna no banco
+        List<Card> cardList = columns.getCards(); //cria uma instância da lista de cards da coluna
 
-        card.setColumns(columns);
-        card.setCreationDate(LocalDate.now());
-        cardRepository.save(card);
+        //se a lista de card não existir ela deve ser criada 
+        if (cardList == null) { cardList = new ArrayList<Card>();}
 
-        if (cardList == null) {
-            cardList = new ArrayList<Card>();
-        }
+        //seta a referência de coluna dentro do card
+        card.setColumns(columns); 
+        card.setCreationDate(LocalDate.now()); 
+        cardRepository.save(card); 
 
-        cardList.add(card);
+        //adiciona card na lista e atualiza a lista dentro da coluna 
+        cardList.add(card); 
         columns.setCards(cardList);
+        columns.setLastModifiedDate(LocalDate.now());
         columnsRepository.save(columns);
+
         return card;
     }
 
@@ -94,13 +97,17 @@ public class CardService {
 
     @Transactional
     public void delete(Long id){
+
+        //busca o card pelo id e deleta
         Card card = cardRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("Card not found with ID: " + id));
         cardRepository.delete(card);
 
+        //busca a coluna responsavel pelo card e exclui a referência do card dentro dela
         Columns columns = columnsRepository.findById(card.getColumns().getId())
         .orElseThrow(() -> new RuntimeException("column not found : "));
         columns.getCards().remove(card);
+        columns.setLastModifiedDate(LocalDate.now());
         columnsRepository.save(columns);
     }
 }
