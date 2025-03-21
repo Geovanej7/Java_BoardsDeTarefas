@@ -1,6 +1,6 @@
 # 📌 Board de Tarefas  
 
-Uma aplicação inspirada nas aulas de integração de sistemas com bancos de dados, do bootcamp **DecolaTech** da **DIO**, desenvolvida com **Java** , que permite gerenciar um **board de tarefas**. 
+Uma aplicação inspirada nas aulas de integração de sistemas com bancos de dados, do bootcamp **DecolaTech** 2025, desenvolvida com **Java** , que permite gerenciar um **board de tarefas**. 
 ---
 
 ## 🚀 Tecnologias Utilizadas  
