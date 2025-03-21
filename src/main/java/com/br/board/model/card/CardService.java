@@ -32,7 +32,7 @@ public class CardService {
         card.setCreationDate(LocalDate.now()); 
         cardRepository.save(card); 
 
-        //adiciona card na lista e atualiza a lista dentro da coluna 
+        //adiciona card na lista e atualizar a lista dentro da coluna 
         cardList.add(card); 
         columns.setCards(cardList);
         columns.setLastModifiedDate(LocalDate.now());
