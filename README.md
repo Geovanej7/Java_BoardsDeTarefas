@@ -5,12 +5,12 @@ Uma aplicação inspirada nas aulas de integração de sistemas com bancos de da
 
 ## 🚀 Tecnologias Utilizadas  
 - **Java 17**  
-- **Spring Boot**  
-- **Hibernate & JPA**  
-- **Banco de Dados H2**  
-- **Lombok**  
+- **Spring Boot**
+- **Lombok** 
+- **Hibernate**
 - **Jakarta Persistence API**
-  
+- **Banco de Dados H2**  
+ 
 ## 📌 Funcionalidades  
 ✅ Crud completo para a entidade **Board**  
 ✅ Crud completo para a entidade **Coluna** que vai estar dentro de um Board  
