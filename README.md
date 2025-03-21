@@ -12,16 +12,16 @@ Uma aplicação inspirada nas aulas de integração de sistemas com bancos de da
 - **Jakarta Persistence API**
   
 ## 📌 Funcionalidades  
-✅ Criar um **Board**  
-✅ Criar uma **Coluna** dentro de um Board  
-✅ Criar um **Card** dentro de uma Coluna  
-✅ **Bloquear** um Card  
+✅ Crud completo para a entidade **Board**  
+✅ Crud completo para a entidade **Coluna** que vai estar dentro de um Board  
+✅ Crud completo para a entidade **Card** que vai estar dentro de uma Coluna  
+✅ Crud completo para a entidade **Block** que vai estar dentro de um Card  
 ✅ **Mover Cards** entre Colunas  
 
-## 🔜 **Funcionalidades Futuras**  
+## 🔜 **Implementações Futuras**  
 🔹 Implementar controle de permissões 
 🔹 Refinar regras de negócios  
-🔹 Criar tratamento de erros
+🔹 Criar tratamento preciso de erros
 
 ## 📄 Diagrama de Classes
 ```mermaid
