@@ -19,9 +19,9 @@ Uma aplicação inspirada nas aulas de integração de sistemas com bancos de da
 ✅ **Mover Cards** entre Colunas  
 
 ## 🔜 **Implementações Futuras**  
-🔹 Implementar controle de permissões 
+
 🔹 Refinar regras de negócios  
-🔹 Criar tratamento preciso de erros
+🔹 Criar tratamento de erros
 
 ## 📄 Diagrama de Classes
 ```mermaid
