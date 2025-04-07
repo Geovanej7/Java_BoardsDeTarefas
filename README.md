@@ -21,7 +21,7 @@ Uma aplicação inspirada nas aulas de integração de sistemas com bancos de da
 ## 🔜 **Implementações Futuras**  
 
 🔹 Refinar regras de negócios  
-🔹 Criar tratamento de erros
+🔹 Criar tratamento de erros <br>
 🔹 fazer a documentação da api 
 
 ## 📄 Diagrama de Classes
