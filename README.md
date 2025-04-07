@@ -22,6 +22,7 @@ Uma aplicação inspirada nas aulas de integração de sistemas com bancos de da
 
 🔹 Refinar regras de negócios  
 🔹 Criar tratamento de erros
+🔹 fazer a documentação da api 
 
 ## 📄 Diagrama de Classes
 ```mermaid
