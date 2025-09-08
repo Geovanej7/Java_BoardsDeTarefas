@@ -20,7 +20,7 @@ import com.br.board.model.board.Board;
 import com.br.board.model.board.BoardService;
 
 @RestController
-@RequestMapping("/controller/board")
+@RequestMapping("/api/board")
 @CrossOrigin
 public class BoardController {
     

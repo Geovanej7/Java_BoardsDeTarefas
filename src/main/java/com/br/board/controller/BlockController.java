@@ -20,7 +20,7 @@ import com.br.board.model.block.Block;
 import com.br.board.model.block.BlockService;
 
 @RestController
-@RequestMapping("/controller/block")
+@RequestMapping("/api/block")
 @CrossOrigin
 public class BlockController {
     @Autowired

@@ -69,6 +69,10 @@ public class CardService {
         Columns currentColumn = columnsRepository.findById(currentColumnId).get(); //busca no banco a coluna atual
         Columns destinationColumn = columnsRepository.findById(destinationColumnId).get();//busca no banco a coluna de destino
 
+        if (currentColumn.getBoard().getId() != destinationColumn.getBoard().getId()) {
+        throw new RuntimeException("Moving the card to a column in a different board is not allowed");
+        }//validação para não deixar um card ser movido para a coluna de outro board
+
         List<Card> currentList = currentColumn.getCards();//cria uma instância da lista de cards da coluna atual 
         List<Card> destinationList = destinationColumn.getCards();//cria uma instância da lista de cards da coluna de destino
 

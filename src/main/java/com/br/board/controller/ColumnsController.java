@@ -19,7 +19,7 @@ import com.br.board.model.columns.Columns;
 import com.br.board.model.columns.ColumnsService;
 
 @RestController
-@RequestMapping("/controller/columns")
+@RequestMapping("/api/columns")
 @CrossOrigin
 public class ColumnsController {
     @Autowired

@@ -19,7 +19,7 @@ import com.br.board.model.card.Card;
 import com.br.board.model.card.CardService;
 
 @RestController
-@RequestMapping("/controller/card")
+@RequestMapping("/api/card")
 @CrossOrigin
 public class CardController {
     
