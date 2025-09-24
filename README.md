@@ -12,11 +12,10 @@ API Rest feita em java, que permite gerenciar um **board de tarefas**.
 - **Banco de Dados H2**  
  
 ## 📌 Funcionalidades  
-✅ Crud completo para a entidade **Board**  
-✅ Crud completo para a entidade **Coluna** 
-✅ Crud completo para a entidade **Card**
-✅ Crud completo para a entidade **Block**  
-✅ **Mover Cards** entre Colunas  
+✅ Adicionar, ler, atualizar e excluir um **Board**  
+✅ Adicionar, ler, atualizar e excluir uma **Coluna** 
+✅ Adicionar, ler, mover, atualizar e excluir um **Card**
+✅ Adicionar, ler, atualizar e excluir um **Block**   
 
 ## 🔜 **Implementações Futuras**  
 
