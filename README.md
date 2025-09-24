@@ -1,6 +1,6 @@
 # 📌 Board de Tarefas  
 
-Uma aplicação inspirada nas aulas de integração de sistemas com bancos de dados, do bootcamp **DecolaTech** 2025, desenvolvida com **Java** , que permite gerenciar um **board de tarefas**. 
+API Rest feita em java, que permite gerenciar um **board de tarefas**. 
 ---
 
 ## 🚀 Tecnologias Utilizadas  
@@ -12,15 +12,17 @@ Uma aplicação inspirada nas aulas de integração de sistemas com bancos de da
 - **Banco de Dados H2**  
  
 ## 📌 Funcionalidades  
-✅ Crud completo para a entidade **Board**  
-✅ Crud completo para a entidade **Coluna** 
-✅ Crud completo para a entidade **Card**
-✅ Crud completo para a entidade **Block**  
-✅ **Mover Cards** entre Colunas  
+✅ Adicionar, ler, atualizar e excluir um **Board**  
+
+✅ Adicionar, ler, atualizar e excluir uma **Coluna** 
+
+✅ Adicionar, ler, mover, atualizar e excluir um **Card**
+
+✅ Adicionar, ler, atualizar e excluir um **Block**   
 
 ## 🔜 **Implementações Futuras**  
 
-🔹 Refinar regras de negócios  
+🔹 Criar testes unitários  
 🔹 Criar tratamento de erros <br>
 🔹 fazer a documentação da api 
 
