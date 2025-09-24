@@ -20,7 +20,7 @@ Uma aplicação inspirada nas aulas de integração de sistemas com bancos de da
 
 ## 🔜 **Implementações Futuras**  
 
-🔹 Refinar regras de negócios  
+🔹 Criar testes unitários  
 🔹 Criar tratamento de erros <br>
 🔹 fazer a documentação da api 
 
