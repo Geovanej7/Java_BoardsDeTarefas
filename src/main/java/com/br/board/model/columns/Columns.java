@@ -35,6 +35,7 @@ public class Columns extends AuditableEntity {
     private String name; 
 
     //orphanRemoval = true: Remove os filhos quando eles forem desvinculados do pai, mesmo que o pai continue existindo.
+    //por isso não usarei essa anotação aqui, para que possa movimentar os cards entre as colunas
     @OneToMany(mappedBy = "columns", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Card> cards;
 }
