@@ -13,8 +13,11 @@ API Rest feita em java, que permite gerenciar um **board de tarefas**.
  
 ## 📌 Funcionalidades  
 ✅ Adicionar, ler, atualizar e excluir um **Board**  
+
 ✅ Adicionar, ler, atualizar e excluir uma **Coluna** 
+
 ✅ Adicionar, ler, mover, atualizar e excluir um **Card**
+
 ✅ Adicionar, ler, atualizar e excluir um **Block**   
 
 ## 🔜 **Implementações Futuras**  
