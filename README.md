@@ -16,9 +16,8 @@ API Rest feita em java, que permite gerenciar um **board de tarefas**.
 
 ✅ Adicionar, ler, atualizar e excluir uma **Coluna** 
 
-✅ Adicionar, ler, mover, atualizar e excluir um **Card**
-
-✅ Adicionar, ler, atualizar e excluir um **Block**   
+✅ Adicionar, ler, mover, atualizar, excluir, bloquear e desbloquear um **Card**
+  
 
 ## 🔜 **Implementações Futuras**  
 
@@ -52,22 +51,15 @@ classDiagram
         - List<Block> blocks
     }
 
-    class Block {
-        - String blockCause
-        - String unBlockCause
-    }
-
     Board "1" --> "*" Columns 
     Columns "1" --> "*" Card 
     Card "1" --> "*" Block 
     Columns "*" --> "1" Board
     Card "*" --> "1" Columns
-    Block "*" --> "1" Card
     
     Board --|> AuditableEntity
     Columns --|> AuditableEntity
     Card --|> AuditableEntity
-    Block --|> AuditableEntity
 
 ```
 ---
