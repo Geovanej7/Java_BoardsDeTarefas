@@ -59,4 +59,14 @@ public class CardController {
         cardService.delete(id);
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping("/block/{id}")
+    public void blockCard(@PathVariable Long id) {
+        cardService.blockCard(id);
+    }
+
+    @PutMapping("/unblock/{id}")
+    public void unblockCard(@PathVariable Long id) {
+        cardService.unblockCard(id);
+    }
 }

@@ -32,7 +32,7 @@ public class CardService {
         card.setCreationDate(LocalDate.now()); 
         cardRepository.save(card); 
 
-        //adiciona card na lista e atualizar a lista dentro da coluna 
+        //adiciona card na lista e atualiza a lista dentro da coluna 
         cardList.add(card); 
         columns.setCards(cardList);
         columns.setLastModifiedDate(LocalDate.now());
@@ -53,6 +53,27 @@ public class CardService {
     } 
 
     @Transactional
+    public void blockCard(Long cardId) {
+        Card card = cardRepository.findById(cardId)
+        .orElseThrow(() -> new RuntimeException("Card not found with ID: " + cardId));
+    
+        card.setBlocked(true);
+        card.setLastModifiedDate(LocalDate.now());
+        cardRepository.save(card);
+    }
+
+    @Transactional
+    public void unblockCard(Long cardId) {
+        Card card = cardRepository.findById(cardId)
+        .orElseThrow(() -> new RuntimeException("Card not found with ID: " + cardId));
+    
+        card.setBlocked(false);
+        card.setLastModifiedDate(LocalDate.now());
+        cardRepository.save(card);
+    }
+
+
+    @Transactional
     public void update(Long id, Card newCard){
         Card card = cardRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("Card not found with ID: " + id));
@@ -66,26 +87,40 @@ public class CardService {
     @Transactional
     public void moveCard(Long cardId, Long currentColumnId, Long destinationColumnId){ 
         
-        Columns currentColumn = columnsRepository.findById(currentColumnId).get(); //busca no banco a coluna atual
-        Columns destinationColumn = columnsRepository.findById(destinationColumnId).get();//busca no banco a coluna de destino
+        //busca no banco a coluna atual
+        Columns currentColumn = columnsRepository.findById(currentColumnId).get(); 
 
+        //busca no banco a coluna de destino
+        Columns destinationColumn = columnsRepository.findById(destinationColumnId).get();
+
+        //validação para não deixar um card ser movido para a coluna de outro board
         if (currentColumn.getBoard().getId() != destinationColumn.getBoard().getId()) {
         throw new RuntimeException("Moving the card to a column in a different board is not allowed");
-        }//validação para não deixar um card ser movido para a coluna de outro board
+        }
 
-        List<Card> currentList = currentColumn.getCards();//cria uma instância da lista de cards da coluna atual 
-        List<Card> destinationList = destinationColumn.getCards();//cria uma instância da lista de cards da coluna de destino
+        //cria uma instância da lista de cards da coluna atual 
+        List<Card> currentList = currentColumn.getCards();
+        //cria uma instância da lista de cards da coluna de destino
+        List<Card> destinationList = destinationColumn.getCards();
 
+        //busca o card pelo id ou retorna um errro
         Card card = cardRepository.findById(cardId)
-        .orElseThrow(() -> new RuntimeException("Card not found with ID: " + cardId));//busca o card pelo id ou retorna um errro
+        .orElseThrow(() -> new RuntimeException("Card not found with ID: " + cardId));
 
-        destinationList.add(card);//adiciona o card na instância da lista de destino
-        destinationColumn.setCards(destinationList);// atualiza a lista na coluna de destino 
+        //checa se o card esra bloqueado
+        if (card.isBlocked()) {
+        throw new RuntimeException("This card is blocked and cannot be moved");
+        }
 
-        currentList.remove(card);//remove o card da lista de onde ele veio 
-        currentColumn.setCards(currentList);// salva a lista na coluna de onde o card veio
+        //adiciona o card na instância da lista de destino e atualiza a lista na coluna de destino
+        destinationList.add(card);
+        destinationColumn.setCards(destinationList); 
 
-        card.setColumns(destinationColumn); //atualiza no card a lista que é responsavel por ele 
+        //remove o card da lista de onde ele veio e salva a lista na coluna de onde o card veio 
+        currentList.remove(card);
+        currentColumn.setCards(currentList);
+        //atualiza no card a lista que é responsavel por ele 
+        card.setColumns(destinationColumn); 
 
         //atualizada a data de modificação dos objetos
         card.setLastModifiedDate(LocalDate.now()); 
@@ -96,7 +131,6 @@ public class CardService {
         cardRepository.save(card);
         columnsRepository.save(currentColumn);
         columnsRepository.save(destinationColumn);
-
     }
 
     @Transactional
