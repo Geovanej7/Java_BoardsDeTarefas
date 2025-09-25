@@ -53,7 +53,6 @@ classDiagram
 
     Board "1" --> "*" Columns 
     Columns "1" --> "*" Card 
-    Card "1" --> "*" Block 
     Columns "*" --> "1" Board
     Card "*" --> "1" Columns
     
