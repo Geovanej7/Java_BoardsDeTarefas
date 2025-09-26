@@ -1,5 +1,6 @@
 package com.br.board;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
@@ -13,17 +14,20 @@ import com.br.board.model.columns.Columns;
 import com.br.board.model.columns.ColumnsRepository;
 
 @DataJpaTest
-public class ColumnTest {
+public class ColumnRepositoryTest {
 
     @Autowired
-    private ColumnsRepository repository;
+    private ColumnsRepository columnsRepository;
 
     @Test
     void shouldSetName(){
-        Columns column = new Columns();
-        column.setName("to do");
-
-         assertEquals("to do", column.getName());
+        Columns column = Columns.builder()
+                        .name("to do")
+                        .build();
+        
+        Columns saved = columnsRepository.saveAndFlush(column);
+        assertNotNull(saved.getId());
+        assertEquals("to do", saved.getName());
     }
 
     @Test
@@ -32,23 +36,30 @@ public class ColumnTest {
         column.setName(null);
 
         assertThrows(Exception.class, () -> {
-            repository.saveAndFlush(column); 
+            columnsRepository.saveAndFlush(column); 
         });
     }
 
     @Test
     void shouldAddCardsToColumn(){
-        Columns column = new Columns();
-        column.setName("to do");
+        Columns column = Columns.builder()
+                        .name("to do")
+                        .build();
         column.setCards(new ArrayList<>());
 
-        Card card = new Card();
-        card.setTitle("to study");
-        card.setDescription("from nine to eleven in the morning");
+
+        Card card = Card.builder()
+                        .title("to study")
+                        .description("from nine to eleven in the morning")
+                        .build();
         card.setColumns(column);
 
         column.getCards().add(card);
 
+        Columns saved = columnsRepository.saveAndFlush(column);
+
+        assertNotNull(saved.getId());
         assertEquals(1, column.getCards().size());
+        assertEquals("to study", saved.getCards().get(0).getTitle());
     }
 }
